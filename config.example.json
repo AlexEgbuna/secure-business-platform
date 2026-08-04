@@ -1,0 +1,39 @@
+{
+  "application": {
+    "name": "Secure Business Platform",
+    "environment": "development",
+    "host": "127.0.0.1",
+    "port": 8080
+  },
+  "database": {
+    "host": "127.0.0.1",
+    "port": 5432,
+    "name": "secure_business_platform",
+    "user": "postgres"
+  },
+  "redis": {
+    "host": "127.0.0.1",
+    "port": 6379
+  },
+  "jwt": {
+    "expiration": "15m",
+    "refresh_expiration": "168h"
+  },
+  "session": {
+    "timeout": "24h"
+  },
+  "metrics": {
+    "enabled": true,
+    "port": 9090
+  },
+  "gotls": {
+    "enabled": true,
+    "proxy_url": "https://127.0.0.1:8443"
+  },
+  "proxy": {
+    "socks5_enabled": false
+  },
+  "logging": {
+    "level": "info"
+  }
+}
