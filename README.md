@@ -24,6 +24,13 @@ This project is designed to demonstrate practical implementation of:
 - Infrastructure security
 - Secure deployment practices
 - Cloud-ready architecture
+- Stateful security integration with GoTLS Proxy
+- Security telemetry and observability
+- SIEM and detection engineering
+- Vulnerability management
+- DevSecOps security controls
+- Threat modeling and security testing
+- Incident response engineering
 
 ---
 
@@ -54,19 +61,74 @@ This project is designed to demonstrate practical implementation of:
 - AWS (Planned)
 - CI/CD (Planned)
 
+### Observability
+
+- Prometheus (planned)
+- Grafana (planned)
+- Loki (planned)
+- Alertmanager (planned)
+
+### SIEM / Detection
+
+- Wazuh (planned)
+- Security event ingestion (planned)
+- Detection engineering (planned)
+
 ---
 
 ## Project Structure
 
 ```text
-cmd/
-internal/
-web/
-migrations/
-deployments/
-scripts/
-tests/
-docs/
+secure-business-platform/
+
+├── cmd/
+│   └── server/
+
+├── internal/
+│   ├── auth/
+│   ├── users/
+│   ├── organizations/
+│   ├── roles/
+│   ├── dashboard/
+│   ├── audit/
+│   ├── middleware/
+│   ├── database/
+│   ├── config/
+│   ├── services/
+│   ├── api/
+│   ├── security/
+│   └── proxy/
+
+├── web/
+│   ├── templates/
+│   ├── static/
+│   ├── css/
+│   ├── js/
+│   └── images/
+
+├── migrations/
+├── scripts/
+├── deployments/
+
+├── docs/
+│   ├── architecture/
+│   ├── deployment/
+│   ├── reports/
+│   ├── security/
+│   ├── testing/
+│   ├── threat-models/
+│   ├── detection/
+│   ├── runbooks/
+│   └── roadmap.md
+
+├── tests/
+
+├── .env.example
+├── config.example.json
+├── .gitignore
+├── README.md
+├── go.mod
+└── go.sum
 ```
 
 ---
@@ -111,16 +173,32 @@ The implementation roadmap includes:
 
 This application is designed to integrate with the GoTLS Proxy project.
 
-The Business Platform will provide authenticated business functionality while GoTLS Proxy provides:
+The Business Platform is designed to operate behind GoTLS Proxy.
 
-- Edge security
-- Reverse proxy services
-- Trust scoring
-- Browser verification
-- Request inspection
-- Advanced traffic filtering
+The Business Platform provides authenticated business/application functionality, while GoTLS provides the Internet-facing edge security layer, including:
 
-Together they form a complete security-focused application platform.
+- TLS termination
+- traffic routing
+- proxy enforcement
+- trust scoring
+- browser/device verification
+- request inspection
+- advanced traffic filtering
+
+The two systems will progressively integrate through:
+
+- identity context
+- application context
+- shared security state
+- security telemetry
+- controlled service-to-service communication
+- security decisions
+
+The Business Platform does not duplicate GoTLS edge-security functionality.
+
+Internal TLS/re-encryption will be introduced when the deployment architecture reaches the appropriate traffic-routing and service-integration stage.
+
+Together, the systems form a security-focused application platform while maintaining clear separation of responsibilities between application security and edge/network/stateful security.
 
 ---
 
