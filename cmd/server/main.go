@@ -10,6 +10,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/AlexEgbuna/secure-business-platform/internal/api"
 	"github.com/AlexEgbuna/secure-business-platform/internal/config"
 )
 
@@ -30,17 +31,11 @@ func main() {
 		log.Fatalf("invalid configuration: %v", err)
 	}
 
-	mux := http.NewServeMux()
-
-	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusOK)
-		_, _ = w.Write([]byte(`{"status":"ok"}`))
-	})
+	router := api.NewRouter()
 
 	server := &http.Server{
 		Addr:         cfg.Application.Host + ":" + itoa(cfg.Application.Port),
-		Handler:      mux,
+		Handler:      router.Handler(),
 		ReadTimeout:  readTimeout,
 		WriteTimeout: writeTimeout,
 		IdleTimeout:  idleTimeout,
