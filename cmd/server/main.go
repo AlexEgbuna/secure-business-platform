@@ -12,6 +12,7 @@ import (
 
 	"github.com/AlexEgbuna/secure-business-platform/internal/api"
 	"github.com/AlexEgbuna/secure-business-platform/internal/config"
+	"github.com/AlexEgbuna/secure-business-platform/internal/database"
 )
 
 const (
@@ -30,6 +31,24 @@ func main() {
 	if err := cfg.Validate(); err != nil {
 		log.Fatalf("invalid configuration: %v", err)
 	}
+
+	dbCtx, dbCancel := context.WithTimeout(
+		context.Background(),
+		10*time.Second,
+	)
+	defer dbCancel()
+
+	db, err := database.New(dbCtx, cfg.Database)
+	if err != nil {
+		log.Fatalf("failed to initialize database: %v", err)
+	}
+
+	if err := db.Ping(dbCtx); err != nil {
+		db.Close()
+		log.Fatalf("failed to connect to database: %v", err)
+	}
+
+	defer db.Close()
 
 	router := api.NewRouter()
 

@@ -59,6 +59,13 @@ func validateDatabase(c *Config) error {
 		return fmt.Errorf("invalid database port: %d", c.Database.Port)
 	}
 
+	switch c.Database.SSLMode {
+	case "disable", "require", "verify-ca", "verify-full":
+		// Supported PostgreSQL SSL modes.
+	default:
+		return fmt.Errorf("invalid database SSL mode: %s", c.Database.SSLMode)
+	}
+
 	return nil
 }
 

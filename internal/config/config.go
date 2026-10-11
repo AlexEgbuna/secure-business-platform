@@ -28,6 +28,7 @@ type DatabaseConfig struct {
 	Name     string
 	User     string
 	Password string
+	SSLMode  string
 }
 
 // RedisConfig contains Redis configuration.

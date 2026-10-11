@@ -39,6 +39,7 @@ func Load() (*Config, error) {
 	cfg.Database.Name = getEnv("DB_NAME", "")
 	cfg.Database.User = getEnv("DB_USER", "")
 	cfg.Database.Password = getEnv("DB_PASSWORD", "")
+	cfg.Database.SSLMode = getEnv("DB_SSL_MODE", "require")
 
 	// --------------------------------------------------
 	// Redis
