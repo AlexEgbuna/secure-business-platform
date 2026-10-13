@@ -1,9 +1,9 @@
 # Secure Business Platform
 
-A production-oriented business application designed to demonstrate modern backend engineering, platform security, identity management, 
+A production-oriented business application designed to demonstrate modern backend engineering, platform security, identity management,
 API security, and secure infrastructure practices.
 
-The platform is being developed alongside GoTLS Proxy to provide a realistic environment for implementing enterprise-grade authentication, 
+The platform is being developed alongside GoTLS Proxy to provide a realistic environment for implementing enterprise-grade authentication,
 authorization, API protection, and edge security.
 
 ---
@@ -143,9 +143,17 @@ Status:
 
 🚧 In Active Development
 
+Recently Completed:
+
+* Milestone 3 — Application Router
+* Milestone 4 — PostgreSQL Database Layer
+
 Current Focus:
 
-Application router implementation completed. Database layer implementation begins next.
+* Milestone 5 — Database Migration System
+
+The database layer is implemented, tested, documented, committed, and pushed.
+The current milestone focuses on introducing version-controlled database schema migrations.
 
 ---
 
